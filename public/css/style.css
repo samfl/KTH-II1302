@@ -68,10 +68,10 @@ li.navbar{
 a{
   text-decoration: none;
 }
-a:visited{
+a.navbar:visited{
   color: #FFFFFF;
 }
-a:hover{
+a.navbar:hover{
   color: red;
 }
 
