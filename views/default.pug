@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='/css/style.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    main
+      block header
+        header.header
+          h1 #{title}
+      block navbar 
+        ul.navbar
+          li.navbar 
+            a(href=`/index`) Home
+          li.navbar 
+            a(href=`/AboutTheProject`) About the Project
+          li.navbar 
+            a(href=`/AboutUs`) About Us
+          li.navbar
+            a(href=`/Login`) Login or Register a New User
+      block content
