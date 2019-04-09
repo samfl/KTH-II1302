@@ -1,14 +1,15 @@
 const express = require('express');
-const people = require('./people.json');
+const people = require('../../people.json');
 
 //const app = express();
 
 module.exports = function(app){
 
 app.set('view engine', 'pug');
+app.set('views', '../');
 
 //serve static files from the 'public' folder
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 app.get('/index', (req, res) => {
   res.render('index', {
