@@ -1,7 +1,9 @@
 const express = require('express');
 const people = require('./people.json');
 
-const app = express();
+//const app = express();
+
+module.exports = function(app){
 
 app.set('view engine', 'pug');
 
@@ -24,11 +26,6 @@ app.get('/AboutUs', (req, res) => {
     people: people.profiles
   });
 });
-app.get('/Login', (req, res) => {
-  res.render('Login', {
-    title: 'Log in or register a new user.'
-  });
-});
 app.get('/profile', (req, res) => {
   const person = people.profiles.find(p => p.id === req.query.id);
   res.render('profile', {
@@ -36,6 +33,4 @@ app.get('/profile', (req, res) => {
     person,
   });
 });
-const server = app.listen(8080, () => {
-  console.log(`Express running -> PORT ${server.address().port}`);
-});
+}
