@@ -3,6 +3,7 @@ var app = express();
 //var http = require('http').Server(app);
 //var ws = require("socket.io")(http);
 var cfenv = require('cfenv');
+require('./public/js/login.js')(app);
 //var IoTApp  = require('./application/application.js');
 
 /* Serve the files out of ./public as our main files. */
