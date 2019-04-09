@@ -1,18 +1,22 @@
 {
-  "name": "simple-node-website",
-  "version": "0.1.0",
-  "description": "A simple website built with Node, Express and Pug",
-  "main": "server.js",
-  "scripts": {
-    "start": "npx pm2 start server.js --watch"
-  },
-  "author": "Ayo Isaiah",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.3",
-    "pug": "^2.0.3"
-  },
-  "devDependencies": {
-    "pm2": "^2.10.3"
-  }
+	"name": "KTH-Demo",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"cfenv": "^1.1.0",
+		"express": "^4.16.4",
+		"ibmiotf": "0.2.x",
+		"ibm_db": "^2.0.0",
+		"socket.io": "2.2.x",
+    	"express-session": "^1.15.6",
+   		"querystring": "^0.2.0",
+		"pug": "^2.0.3"
+	},
+	"repository": {},
+	"engines": {
+		"node": "11.5.0"
+	}
 }
