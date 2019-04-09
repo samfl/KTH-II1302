@@ -11,7 +11,7 @@
 		"ibmiotf": "0.2.x",
 		"socket.io": "2.2.x",
     	"express-session": "^1.15.6",
-   		"ibm_db": "^3.0.0",
+   		"ibm_db": "^2.4.1",
    		"querystring": "^0.2.0"
 	},
 	"repository": {},
