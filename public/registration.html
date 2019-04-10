@@ -3,17 +3,21 @@
     <head>
         <title>Registration page</title>
         <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/navbar.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body id = "login">
-        <div class ="navbar">
-        <ul>      
-            <li><a href="login.html">Login</a></li>
-            <li><a class= "current" href="registration.html">Register</a></li>
+        <header class="header">
+            <h1>Registration Page</h1>
+        </header>
+        <ul class="navbar">
+            <li class="navbar"> <a class="navbar" href="/index.pug">Home</a></li>
+            <li class="navbar"> <a class="navbar" href="/AboutTheProject">About the Project</a></li>
+            <li class="navbar"> <a class="navbar" href="/AboutUs">About Us</a></li>
+            <li class="navbar"><a class="navbar" href="login.html">Login</a></li>
+            <li class="navbar"><a class="navbar" href="registration.html">Registration</a></li>
         </ul>
-        </div>
-        <br><br>
         <div class ="loginPage">  
           <form action="reg" method="POST">
             <label>Enter Username</label><br>

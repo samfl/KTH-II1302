@@ -2,7 +2,7 @@ body{
     font-family: verdana, arial, sans-serif;
 }
 
-.navbar ul {
+/*.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ body{
 .navbar li a:hover {
     background-color: rgb(1, 0, 75);
 }
-
+*/
 input#logout {
     width:100%;
     height:100%;
