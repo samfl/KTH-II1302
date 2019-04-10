@@ -6,7 +6,7 @@ const people = require('../../people.json');
 module.exports = function(app){
 
 app.set('view engine', 'pug');
-app.set('views', '../');
+app.set('views', './public/');
 
 //serve static files from the 'public' folder
 //app.use(express.static(__dirname + '/public'));
