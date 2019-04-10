@@ -11,6 +11,10 @@ app.set('views', './public/');
 //serve static files from the 'public' folder
 //app.use(express.static(__dirname + '/public'));
 
+app.get('/', function(req, res) {
+  res.render('index', {title: 'CurfewBot2020', })
+})
+
 app.get('/index', (req, res) => {
   res.render('index', {
     title: 'CurfewBot2020'
