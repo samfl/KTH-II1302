@@ -20,11 +20,11 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-app.get('/', function(request, response) {
+/*app.get('/', function(request, response) {
 
 	response.sendFile(path.join(__dirname + '/../login.html'));
 
-});
+});*/
 
 app.post('/auth', function(request, response) {
 
@@ -85,6 +85,11 @@ app.get('/login', function(request, response) {
 
 });
 
+app.get('/logout', function(request, response) {
+	  
+	 request.session.loggedin = false;
+	 
+});
 
 });
 
