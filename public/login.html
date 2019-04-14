@@ -2,30 +2,32 @@
 <html>
     <head>
         <title>Login page</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type ="text/javascript" src ="js/jqueryFuncs.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body id = "login">
         <header class="header">
             <h1>Login Page</h1>
+            <input id = "logout" type = "submit" onclick="logout();" value ="Logout"></input>
         </header>
         <ul class="navbar">
-            <li class="navbar"> <a class="navbar" href="/index.pug">Home</a></li>
+            <li class="navbar"> <a class="navbar" href="/index">Home</a></li>
             <li class="navbar"> <a class="navbar" href="/AboutTheProject">About the Project</a></li>
             <li class="navbar"> <a class="navbar" href="/AboutUs">About Us</a></li>
-            <li class="navbar"><a class="navbar" href="login.html">Login</a></li>
+            <li class="navbar"><a class="login" href="login.html">Login</a></li>
             <li class="navbar"><a class="navbar" href="registration.html">Registration</a></li>
         </ul>
         <div class ="loginPage">
-              <form action="auth" method="POST">
               <label>Enter Username</label><br>
               <input id ="username" name = "username" placeholder ="username" type = "text"><br>
               <label>Enter Password</label><br>
               <input id = "password" name ="password" placeholder="*********" type = "password"> <br>
-              <input id ="submitLogin" type="submit" value="Log in">
-              </form>
+              <input type="submit" onclick="login();" value="Login">
               <br>
               <a href="registration.html"><label id ="signup">Dont have account yet?, register here!</label></a>
               <br>
