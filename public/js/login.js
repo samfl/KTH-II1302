@@ -20,11 +20,6 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-/*app.get('/', function(request, response) {
-
-	response.sendFile(path.join(__dirname + '/../login.html'));
-
-});*/
 
 app.post('/auth', function(request, response) {
 
@@ -40,15 +35,11 @@ conn.queryResult(query, [username,password], function (err, result) {
 	 if(err) { console.log(err); }
 		else{
 			if(re===null){
-			response.redirect("/login");
-			response.end();
+				response.send(false);
 			}
-			else{
-
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/loggedin');
-
+			else{	
+	     		request.session.loggedin = true;
+				response.send(true);
 			}
     }
  });
@@ -85,10 +76,17 @@ app.get('/login', function(request, response) {
 
 });
 
-app.get('/logout', function(request, response) {
+app.post('/logout', function(request, response) {
 	  
-	 request.session.loggedin = false;
-	 
+	request.session.loggedin = false;
+	response.send(request.session.loggedin);
+	
+});
+
+app.post('/loggedin', function(request, response) {
+
+   response.send(request.session.loggedin);
+   
 });
 
 });
