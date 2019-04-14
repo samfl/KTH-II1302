@@ -4,12 +4,15 @@ html
     title #{title}
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/navbar.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(type='text/javascript' src='js/jqueryFuncs.js')
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     main
       block header
         header.header
           h1 #{title}
+          input#logout(type='submit' onclick='logout();' value='Logout')
       block navbar 
         ul.navbar
           li.navbar 
@@ -19,7 +22,7 @@ html
           li.navbar 
             a.navbar(href=`/AboutUs`) About Us
           li.navbar
-            a.navbar(href=`login.html`) Login
+            a.login(href=`login.html`) Login
           li.navbar
             a.navbar(href=`registration.html`) Registration
       block content
