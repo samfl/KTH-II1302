@@ -36,7 +36,7 @@ console.log("Successfully connected to our IoT service!");
 // subscribe to input events
 appClient.on("connect", function () {
  console.log("subscribe to input events");
- appClient.subscribeToDeviceEvents("");
+ appClient.subscribeToDeviceEvents("g10-pi");
 });
 
 var motionSensorData = {"motionPayload":{}};
