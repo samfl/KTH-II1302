@@ -42,12 +42,12 @@ appClient.on("connect", function () {
 var motionSensorData = {"motionPayload":{}};
 
 // deviceType "raspberrypi" and eventType "motionSensor" are published by client.py on RaspberryPi
+/*
 appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, payload){
  if (eventType === 'motionSensor'){
    motionSensorData.motionPayload = JSON.parse(payload);
  }
-}
-
+}  */
 
 app.listen(app_env.port, '0.0.0.0', function() {
 });
