@@ -20,6 +20,18 @@ iotCredentials = baseConfig['iotex'];
 /* Serve the files out of ./public as our main files. */
 app.use(express.static(__dirname + '/public'));
 
+var iotAppConfig = {
+ "org" : iotCredentials.credentials.org,
+ "id" : iotCredentials.credentials.iotCredentialsIdentifier,
+ "auth-method" : "apikey",
+ "auth-key" : iotCredentials.credentials.apiKey,
+ "auth-token" : iotCredentials.credentials.apiToken
+}
+
+appClient.connect();
+console.log("Successfully connected to our IoT service!");
+
+
 
 app.listen(app_env.port, '0.0.0.0', function() {
 });
