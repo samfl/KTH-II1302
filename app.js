@@ -14,8 +14,8 @@ var iotCredentials;
 var app_env = cfenv.getAppEnv();
 
 //Loop through configuration internally defined in Bluemix and retrieve the credential from the IoT service
-var baseConfig = app_env.getServices(iotPlatformServiceName);
-iotCredentials = baseConfig[iotPlatformServiceName];
+var baseConfig = app_env.getServices('iotex');
+iotCredentials = baseConfig['iotex'];
 
 /* Serve the files out of ./public as our main files. */
 app.use(express.static(__dirname + '/public'));
