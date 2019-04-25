@@ -33,6 +33,21 @@ appClient.connect();
 console.log("Successfully connected to our IoT service!");
 
 
+// subscribe to input events
+appClient.on("connect", function () {
+ console.log("subscribe to input events");
+ appClient.subscribeToDeviceEvents("");
+});
+
+var motionSensorData = {"motionPayload":{}};
+
+// deviceType "raspberrypi" and eventType "motionSensor" are published by client.py on RaspberryPi
+appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, payload){
+ if (eventType === 'motionSensor'){
+   motionSensorData.motionPayload = JSON.parse(payload);
+ }
+}
+
 
 app.listen(app_env.port, '0.0.0.0', function() {
 });
