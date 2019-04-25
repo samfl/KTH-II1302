@@ -8,6 +8,12 @@ require('./public/js/page-routing.js')(app);
 //var IoTApp  = require('./application/application.js');
 var Client = require('ibmiotf').IotfApplication;
 
+var iotCredentials;
+
+//Loop through configuration internally defined in Bluemix and retrieve the credential from the IoT service
+var baseConfig = appEnv.getServices(iotPlatformServiceName);
+iotCredentials = baseConfig[iotPlatformServiceName];
+
 /* Serve the files out of ./public as our main files. */
 app.use(express.static(__dirname + '/public'));
 
