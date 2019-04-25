@@ -28,6 +28,7 @@ var iotAppConfig = {
  "auth-token" : iotCredentials.credentials.apiToken
 }
 
+var appClient = new Client(iotAppConfig);
 appClient.connect();
 console.log("Successfully connected to our IoT service!");
 
