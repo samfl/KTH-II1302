@@ -6,6 +6,7 @@ var cfenv = require('cfenv');
 require('./public/js/login.js')(app);
 require('./public/js/page-routing.js')(app);
 //var IoTApp  = require('./application/application.js');
+var Client = require('ibmiotf').IotfApplication;
 
 /* Serve the files out of ./public as our main files. */
 app.use(express.static(__dirname + '/public'));
