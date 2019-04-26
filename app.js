@@ -77,7 +77,7 @@ application.on('payload', function(data) {
 });
 
 /* Start server on the specified port and binding host app_env.port */
-http.listen(app_env.port, function() {});
+//http.listen(app_env.port, function() {});
 
 /* Retrieve Cloud Foundry environment variables. */
 //var credentials = app_env.getServiceCreds(IOT_PLATFORM);
