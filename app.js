@@ -67,18 +67,17 @@ appClient.on("deviceEvent", function(deviceType, deviceId, eventType, format, pa
  }
 }*/
 
+//OK
+/*app.listen(app_env.port, '0.0.0.0', function() {
+}); */
 
 application.on('payload', function(data) {
   /* We then broadcast to our clients.  */
-  ws.emit('broadcast', JSON.parse(data));
+  //ws.emit('broadcast', JSON.parse(data));
 });
 
-
-//OK
-app.listen(app_env.port, '0.0.0.0', function() {
-});
 /* Start server on the specified port and binding host app_env.port */
-//http.listen(app_env.port || 4096, function() {});
+http.listen(app_env.port, function() {});
 
 /* Retrieve Cloud Foundry environment variables. */
 //var credentials = app_env.getServiceCreds(IOT_PLATFORM);
