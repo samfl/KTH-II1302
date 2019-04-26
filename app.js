@@ -47,7 +47,7 @@ appClient.on("connect", function () {
  console.log("subscribe to input events");
  appClient.subscribeToDeviceEvents("g10-pi");
 
- ee.app_client.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
+ ee.appClient.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
     //console.log("Device Event from :: " +deviceType + " : " + deviceId + " of event " + eventType + " with payload : " + payload);
     ee.emit('payload', payload);
   });
