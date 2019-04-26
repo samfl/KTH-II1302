@@ -7,6 +7,7 @@ require('./public/js/login.js')(app);
 require('./public/js/page-routing.js')(app);
 //var IoTApp  = require('./application/application.js');
 var Client = require('ibmiotf').IotfApplication;
+var EventEmitter = require('events');
 
 var iotCredentials;
 
@@ -40,13 +41,22 @@ console.log("Successfully connected to our IoT service!");
 
 // subscribe to input events
 // OK
+var ee = new EventEmitter();
+
 appClient.on("connect", function () {
  console.log("subscribe to input events");
  appClient.subscribeToDeviceEvents("g10-pi");
+
+ ee.app_client.on("deviceEvent", async function (deviceType, deviceId, eventType, format, payload) {
+    //console.log("Device Event from :: " +deviceType + " : " + deviceId + " of event " + eventType + " with payload : " + payload);
+    ee.emit('payload', payload);
+  });
 });
 
 //OK
-var motionSensorData = {"motionPayload":{}};
+//var motionSensorData = {"motionPayload":{}};
+
+
 
 // deviceType "raspberrypi" and eventType "motionSensor" are published by client.py on RaspberryPi
 //FUNKAR EJ!
