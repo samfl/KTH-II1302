@@ -4,12 +4,15 @@
 .header {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   height: 80px;
   background-color: #525286;
   color: #FFFFFF;
   /*margin-bottom: 50px;*/
+}
+.header h1 {
+ margin-right: 40%;
 }
 
 .navbar {
@@ -30,4 +33,22 @@ a.navbar:visited{
 }
 a.navbar:hover{
   color: red;
+}
+input#logout {
+  visibility:hidden;
+  width:5%;
+  height:50%;
+  font-size:14px;
+  color:white;
+  background-color: rgb(6, 114, 236);
+  border-radius:5px;
+  border: 2px solid  rgb(2, 80, 168);
+  font-weight:500;
+  margin-right:2px;
+}
+input#logout:hover{
+  background-color: rgb(5, 3, 99);
+}
+.login{
+  color:white;
 }

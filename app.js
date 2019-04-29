@@ -3,6 +3,7 @@ var app = express();
 //var http = require('http').Server(app);
 //var ws = require("socket.io")(http);
 var cfenv = require('cfenv');
+require('./public/js/login.js')(app);
 require('./public/js/page-routing.js')(app);
 //var IoTApp  = require('./application/application.js');
 

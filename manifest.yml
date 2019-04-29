@@ -1,0 +1,6 @@
+applications:
+- name: Grupp10-19_II1302
+  memory: 128M
+  buildpack: sdk-for-nodejs
+  services:
+  - iotex
