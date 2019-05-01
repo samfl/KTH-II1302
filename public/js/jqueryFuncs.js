@@ -1,5 +1,8 @@
-$(document).ready(function(){       
+$(document).ready(function(){   
+    $(".setAlarmLink").empty(); 
     loggedin(); 
+
+
 });
 
 function login(){
@@ -34,8 +37,10 @@ function logout(){
 function loggedin(){
     $.post("/loggedin", function(response){  
            if(response === true){
-           $("#logout").css("visibility","visible");
-           $(".login").empty();
+            $("#logout").css("visibility","visible");
+            $('.setAlarmLink').append('Set Alarm');
+            $(".login").empty();
            }
     }); 
 }
+
