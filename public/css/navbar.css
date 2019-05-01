@@ -19,12 +19,14 @@
 
 .navbar {
   display: inline;
-  color: #FFFFFF;
   margin-bottom: 50px;
 }
 li.navbar{
   padding-left: 1em;
   padding-right: 1em;
+}
+a.navbar {
+  color: black;
 }
 a{
   text-decoration: none;
@@ -51,5 +53,5 @@ input#logout:hover{
   background-color: rgb(5, 3, 99);
 }
 .login{
-  color:white;
+  color:black;
 }
