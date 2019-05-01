@@ -22,10 +22,12 @@ var credentials = app_env.getServiceCreds(IOT_PLATFORM);
 var application = new IoTApp(credentials.org, credentials.apiKey, credentials.apiToken);
 
 /* Application is an event emitter, so we listen for the payload event we defined in application.js! */
+/*
 application.on('payload', function(data) {
-  /* We then broadcast to our clients.  */
+  // We then broadcast to our clients.
   ws.emit('broadcast', JSON.parse(data));
 });
+*/
 
 /* Start server on the specified port and binding host app_env.port */
 http.listen(app_env.port || 4096, function() {});
