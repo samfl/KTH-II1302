@@ -2,6 +2,8 @@ var ibmdb = require('ibm_db');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
+var passwordHash = require('password-hash');
+
 
 module.exports = function(app){
 
@@ -23,37 +25,42 @@ app.use(bodyParser.json());
 
 app.post('/auth', function(request, response) {
 
-var username = request.body.username;
-var password = request.body.password;
-
-var query = 'select * from USERS WHERE USERNAME = ? AND PASSWORD = ?';
-
-conn.queryResult(query, [username,password], function (err, result) {
-
-	var re = result.fetchSync();
-
-	 if(err) { console.log(err); }
-		else{
-			if(re===null){
-				response.send(false);
-			}
-			else{	
-	     		request.session.loggedin = true;
-				response.send(true);
-			}
-    }
- });
-});
-
-
-app.post('/reg', function(request, response) {
-
 	var username = request.body.username;
 	var password = request.body.password;
+	
+	var query = 'SELECT * from USERS WHERE USERNAME = ?';
+	
+	  conn.queryResult(query, [username], function (err, result) {
+	
+		var re = result.fetchSync();
+	
+		if(re === null){
+			response.send(false);
+		}
+		else{
+			var hashedPassword = re.PASSWORD;
+	
+			if(passwordHash.verify(password, hashedPassword)){
+				request.session.loggedin = true;
+				request.session.username = username;
+				response.send(true);		
+			}
+			else{	
+				response.send(false);
+		   }
+		}
+		
+	 });
+ });
 
+
+ app.post('/reg', function(request, response) {
+
+	var username = request.body.username;
+    var hashedPassword = passwordHash.generate(request.body.password);
 	var queryin = "INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?, ?)";
 
-	conn.queryResult(queryin, [username,password], function (err, result) {
+	conn.queryResult(queryin, [username,hashedPassword], function (err, result) {
 
 		if(err) { console.log(err); }
 		 else {

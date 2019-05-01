@@ -14,7 +14,9 @@
 		"module-alias": "^2.2.0",
 		"pug": "^2.0.3",
 		"querystring": "^0.2.0",
-		"socket.io": "2.2.x"
+		"socket.io": "2.2.x",
+		"password-hash": "^1.2.2"
+
 	},
 	"repository": {},
 	"engines": {
