@@ -27,7 +27,7 @@ ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.b
 application.on('payload', function(data) {
 
 //function checkForAlarm() {
-  //if(data === 1){
+  if(data === 1){
     var date = new Date();
     var currentHour = String(date.getHours()).padStart(2, "0");
     var currentMin = String(date.getMinutes()).padStart(2, "0");
@@ -58,7 +58,7 @@ application.on('payload', function(data) {
               }
           }
         });
-     // }
+      }
     });
 
 
