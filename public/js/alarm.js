@@ -24,7 +24,42 @@ ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.b
 	});
 });
 
+//application.on('payload', function(data) {
 
+function checkForAlarm() {
+  //if(data === 1){
+    var date = new Date();
+    var currentHour = String(date.getHours()).padStart(2, "0");
+    var currentMin = String(date.getMinutes()).padStart(2, "0");
+    var currentSec = String(date.getSeconds()).padStart(2, "0");
+    var currentTime = currentHour + ":" + currentMin;
+   
+    var query = 'SELECT * from ALARMS WHERE START < CAST(? as time) AND END > CAST(? as time)'
+    conn.queryResult(query, [currentTime,currentTime], function (err, result) {
+
+        var re = result.fetchSync();
+    
+         if(err) { console.log(err); }
+            else{
+                if(re===null){
+                }
+                else{	
+                currentTime = currentTime + ':' + currentSec;
+                var currentDate = date.toISOString().slice(0,10);
+                
+                var queryin = "INSERT INTO EVENTS (EVENTTIME,EVENTDATE) VALUES (?, ?)";
+
+	            conn.queryResult(queryin, [currentTime,currentDate], function (err, result) {
+	           	if(err) { 
+                         console.log(err);
+              }
+	            });
+
+              }
+          }
+        });
+      }
+   // });
 
 
 
