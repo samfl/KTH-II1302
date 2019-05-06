@@ -4,13 +4,6 @@ var http = require('http').Server(app);
 var ws = require("socket.io")(http);
 var cfenv = require('cfenv');
 var IoTApp  = require('./application.js');
-require('./public/js/login.js')(app);
-require('./public/js/page-routing.js')(app);
-require('./public/js/alarm.js')(app);
-
-/* Serve the files out of ./public as our main files. */
-app.use(express.static(__dirname + '/public'));
-
 /*
   Get the app environment from Cloud Foundry,
   if you are developing locally (VCAP_SERVICES environment variable not set),
@@ -23,6 +16,14 @@ const IOT_PLATFORM = "iotex";
 /* Retrieve Cloud Foundry environment variables. */
 var credentials = app_env.getServiceCreds(IOT_PLATFORM);
 var application = new IoTApp(credentials.org, credentials.apiKey, credentials.apiToken);
+
+require('./public/js/login.js')(app);
+require('./public/js/alarm.js')(app,application);
+require('./public/js/page-routing.js')(app);
+
+/* Serve the files out of ./public as our main files. */
+app.use(express.static(__dirname + '/public'));
+
 
 /* Application is an event emitter, so we listen for the payload event we defined in application.js! */
 /*

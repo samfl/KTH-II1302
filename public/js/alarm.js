@@ -1,6 +1,6 @@
 var ibmdb = require('ibm_db');
 
-module.exports = function(app){
+module.exports = function(app,application){
 
 ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.bluemix.net;UID=ldk15513;PWD=hqsv1nbr3^7tdzg1;PORT=50000;PROTOCOL=TCPIP", function (err,conn) {
  if (err) return console.log(err);
@@ -63,11 +63,8 @@ application.on('payload', function(data) {
       }
     });
 
-
-
     //setInterval(checkForAlarm, 10000);
     app.get('/getAlarms', function(request, response) {
-
        var querya = 'SELECT * from ALARMS';
 
        conn.queryResult(querya, function (err, result) {
@@ -77,17 +74,12 @@ application.on('payload', function(data) {
      });
 
      app.get('/getEvents', function(request, response) {
-
-
        var querye = 'SELECT * from EVENTS';
 
        conn.queryResult(querye, function (err, result) {
        var arrayresult = result.fetchAllSync({fetchMode:3});
          response.send(arrayresult);
        });
-
      });
-
-});
-
+   });
 }
