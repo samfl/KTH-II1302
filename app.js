@@ -22,7 +22,6 @@ const IOT_PLATFORM = "iotex";
 /* Retrieve Cloud Foundry environment variables. */
 var credentials = app_env.getServiceCreds(IOT_PLATFORM);
 var application = new IoTApp(credentials.org, credentials.apiKey, credentials.apiToken);
-require('./public/js/alarm.js')(app,application);
 
 /* Application is an event emitter, so we listen for the payload event we defined in application.js! */
 /*
