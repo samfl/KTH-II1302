@@ -5,6 +5,7 @@ var ws = require("socket.io")(http);
 var cfenv = require('cfenv');
 var IoTApp  = require('./application.js');
 require('./public/js/login.js')(app);
+require('./public/js/alarm.js')(app);
 require('./public/js/page-routing.js')(app);
 
 /* Serve the files out of ./public as our main files. */

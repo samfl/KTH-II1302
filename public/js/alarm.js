@@ -42,10 +42,8 @@ application.on('payload', function(data) {
          if(err) { console.log(err); }
             else{
                 if(re===null){
-                console.log('not found');
                 }
                 else{	
-                console.log('exist');
                 currentTime = currentTime + ':' + currentSec;
                 var currentDate = date.toISOString().slice(0,10);
                 
@@ -63,9 +61,6 @@ application.on('payload', function(data) {
       }
     });
 
-
-
-    //setInterval(checkForAlarm, 10000);
 
 
 });
