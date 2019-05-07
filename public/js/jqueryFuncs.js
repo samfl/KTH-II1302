@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $(".setAlarmLink").empty();
+    $(".viewAlarmsLink").empty();
+    $(".viewEventsLink").empty();
     loggedin();
     loadEvents();
     loadAlarms();
@@ -31,6 +33,9 @@ function logout(){
         if(response===false){
         $("#logout").css("visibility","hidden");
         $(".login").append('Login');
+        $(".viewEventsLink").empty();
+        $(".viewAlarmsLink").empty();
+        $(".setAlarmLink").empty();
         }
     });
 }
@@ -39,6 +44,8 @@ function loggedin(){
            if(response === true){
             $("#logout").css("visibility","visible");
             $('.setAlarmLink').append('Set Alarm');
+            $('.viewAlarmsLink').append('View Alarms');
+            $('.viewEventsLink').append('View Events');
             $(".login").empty();
            }
     });
