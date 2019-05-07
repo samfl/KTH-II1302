@@ -12,7 +12,7 @@ ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.b
     var user = request.session.username;
     var desc = request.body.desc;
 
-	var queryin = "INSERT INTO ALARMS (START, END, USER, DESCRIPTION) VALUES (?, ?, ?, ?)";
+	var queryin = "INSERT INTO ALARMS (START, END, USERNAME, DESCRIPTION) VALUES (?, ?, ?, ?)";
 
 	conn.queryResult(queryin, [start,end,user,desc], function (err, result) {
 		if(err) {
@@ -27,49 +27,45 @@ ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.b
 application.on('payload', function(data) {
 
 //function checkForAlarm() {
-  if(data === 1){
+  if(data == 1){
     var date = new Date();
     var currentHour = String(date.getHours()).padStart(2, "0");
     var currentMin = String(date.getMinutes()).padStart(2, "0");
     var currentSec = String(date.getSeconds()).padStart(2, "0");
     var currentTime = currentHour + ":" + currentMin;
-
     var query = 'SELECT * from ALARMS WHERE START < CAST(? as time) AND END > CAST(? as time)'
+
     conn.queryResult(query, [currentTime,currentTime], function (err, result) {
-
         var re = result.fetchSync();
-
          if(err) { console.log(err); }
-            else{
-                if(re===null){
-                console.log('not found');
-                }
-                else{
+            else {
+              if(re===null){console.log('not found');}
+              else {
                 console.log('exist');
                 currentTime = currentTime + ':' + currentSec;
                 var currentDate = date.toISOString().slice(0,10);
-
                 var queryin = "INSERT INTO EVENTS (EVENTTIME,EVENTDATE) VALUES (?, ?)";
-
-	            conn.queryResult(queryin, [currentTime,currentDate], function (err, result) {
-	           	if(err) {
-                         console.log(err);
+	               conn.queryResult(queryin, [currentTime,currentDate], function (err, result) {
+	           	      if(err) {console.log(err);}
+                 });
               }
-	            });
-
-              }
-          }
+            }
         });
       }
     });
 
     //setInterval(checkForAlarm, 10000);
     app.get('/getAlarms', function(request, response) {
-       var querya = 'SELECT * from ALARMS';
-
+       var username = request.session.username;
+       var querya = 'SELECT * from ALARMS WHERE USERNAME = ?';
+       
        conn.queryResult(querya, function (err, result) {
+         if(result === null) {resonse.end()} else {
            var arrayresult = result.fetchAllSync({fetchMode:3});
-           response.send(arrayresult);
+           if(arrayresult === null) { response.end()} else {
+             resonse.send(arrayresult);
+           }
+         }
        });
      });
 
