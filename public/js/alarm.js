@@ -58,12 +58,12 @@ application.on('payload', function(data) {
     app.get('/getAlarms', function(request, response) {
        var username = request.session.username;
        var querya = 'SELECT * from ALARMS WHERE USERNAME = ?';
-       
+
        conn.queryResult(querya, function (err, result) {
-         if(result === null) {resonse.end()} else {
+         if(result === null) {response.end()} else {
            var arrayresult = result.fetchAllSync({fetchMode:3});
            if(arrayresult === null) { response.end()} else {
-             resonse.send(arrayresult);
+             response.send(arrayresult);
            }
          }
        });
