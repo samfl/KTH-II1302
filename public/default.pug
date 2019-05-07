@@ -13,13 +13,13 @@ html
         header.header
           h1 #{title}
           input#logout(type='submit' onclick='logout();' value='Logout')
-      block navbar 
+      block navbar
         ul.navbar
-          li.navbar 
+          li.navbar
             a.navbar(href=`/index`) Home
-          li.navbar 
+          li.navbar
             a.navbar(href=`/AboutTheProject`) About the Project
-          li.navbar 
+          li.navbar
             a.navbar(href=`/AboutUs`) About Us
           li.navbar
             a.login(href=`login.html`) Login
@@ -27,4 +27,8 @@ html
             a.navbar(href=`registration.html`) Registration
           li.navbar
             a.setAlarmLink(href ='setAlarm.html') Set Alarm
+          li.navbar
+            a.viewAlarmsLink(href ='viewAlarms.html') View Alarms
+          li.navbar
+            a.viewEventsLink(href ='viewEvents.html') View Events
       block content
