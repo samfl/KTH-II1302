@@ -57,17 +57,26 @@ app.post('/auth', function(request, response) {
  app.post('/reg', function(request, response) {
 
 	var username = request.body.username;
-    var hashedPassword = passwordHash.generate(request.body.password);
-	var queryin = "INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?, ?)";
-
-	conn.queryResult(queryin, [username,hashedPassword], function (err, result) {
-
-		if(err) { console.log(err); }
-		 else {
-			response.redirect('/login');
+	var queryu = "SELECT * FROM USERS WHERE USERNAME = ?";
+	
+	 conn.queryResult(queryu, [username], function (err, result) {
+		 if(result.fetchSync() !== null){
+			 response.send(false);
+			 response.end();
 		 }
-	});
-});
+	 });
+		
+		var hashedPassword = passwordHash.generate(request.body.password);
+		var queryin = "INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?, ?)";
+	
+		conn.queryResult(queryin, [username,hashedPassword], function (err, result) {
+	
+			if(err) { console.log(err); }
+			 else {
+				response.end();
+			 }
+	  });
+ });
 
 
 

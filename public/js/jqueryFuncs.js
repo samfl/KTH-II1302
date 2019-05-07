@@ -27,6 +27,23 @@ function login(){
        });
 }
 
+function register(){
+    var username = $("#username").val();
+    var password = $("#password").val();
+    $.post("/reg", {   
+        username: username,
+        password: password
+    }, function(response){  
+        $("#username").val(''); 
+        $("#password").val('');
+        if(response === false){
+          alert('user with that username already exists');
+        }
+        else{
+            window.location.href = 'login.html';
+        }
+       });
+}
 
 function logout(){
     $.post("/logout", function(response){

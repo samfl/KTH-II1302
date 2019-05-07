@@ -21,6 +21,9 @@
             <li class="navbar"> <a class="navbar" href="/AboutUs">About Us</a></li>
             <li class="navbar"><a class="login" href="login.html">Login</a></li>
             <li class="navbar"><a class="navbar" href="registration.html">Registration</a></li>
+            <li class="navbar"><a class="setAlarmLink" href="setAlarm.html">Set Alarm</a></li>
+            <li class="navbar"><a class="viewAlarmsLink" href="viewAlarms.html">View Alarms</a></li>
+            <li class="navbar"><a class="viewEventsLink" href="viewEvents.html">View Events</a></li>
         </ul>
         <div class ="loginPage">  
           <form action="reg" method="POST">
@@ -28,7 +31,7 @@
             <input id ="username" name = "username" placeholder ="username" type = "text"><br>
             <label>Enter Password</label><br>
             <input id = "password" name = "password" placeholder="*********" type = "password"> <br>
-            <input id ="submitRegistration" type="submit" value="Sign up">
+            <input type="submit" onclick="register();" value="Sign up">
            </form>
             <br>
         </div>

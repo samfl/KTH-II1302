@@ -26,7 +26,6 @@ ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.b
 
 application.on('payload', function(data) {
 
-//function checkForAlarm() {
   if(data == 1){
     var date = new Date();
     var currentHour = String(date.getHours()).padStart(2, "0");
@@ -54,12 +53,11 @@ application.on('payload', function(data) {
       }
     });
 
-    //setInterval(checkForAlarm, 10000);
     app.get('/getAlarms', function(request, response) {
        var username = request.session.username;
        var querya = 'SELECT * from ALARMS WHERE USERNAME = ?';
        
-       conn.queryResult(querya, function (err, result) {
+       conn.queryResult(querya,[username], function (err, result) {
          if(result === null) {resonse.end()} else {
            var arrayresult = result.fetchAllSync({fetchMode:3});
            if(arrayresult === null) { response.end()} else {
