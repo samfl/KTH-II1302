@@ -1,32 +1,27 @@
-var ibmdb = require('ibm_db');
+module.exports = function(app, application, conn) {
 
-module.exports = function(app,application){
-
-ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.bluemix.net;UID=ldk15513;PWD=hqsv1nbr3^7tdzg1;PORT=50000;PROTOCOL=TCPIP", function (err,conn) {
- if (err) return console.log(err);
-
- app.post('/setAlarm', function(request, response) {
-
+app.post('/seta', function(request, response) {
+  if(!request.body) {
+    console.log("Object missing!");
+  } else {
     var start = request.body.start;
     var end = request.body.end;
     var user = request.session.username;
     var desc = request.body.desc;
 
-	var queryin = "INSERT INTO ALARMS (START, END, USERNAME, DESCRIPTION) VALUES (?, ?, ?, ?)";
+    var queryin = "INSERT INTO ALARMS (START, END, USERNAME, DESCRIPTION) VALUES (?, ?, ?, ?)";
 
-	conn.queryResult(queryin, [start,end,user,desc], function (err, result) {
-		if(err) {
-            console.log(err);
-        }
-		 else {
-			response.redirect('/index');
-		 }
-	});
+    conn.queryResult(queryin, [start,end,user,desc], function (err, result) {
+      if(err) {console.log(err);}
+      else {response.redirect('/index');}
+    });
+  }
 });
+
 
 application.on('payload', function(data) {
 
-  if(data == 1){
+  if(data == 1) {
     var date = new Date();
     var currentHour = String(date.getHours()).padStart(2, "0");
     var currentMin = String(date.getMinutes()).padStart(2, "0");
@@ -53,6 +48,7 @@ application.on('payload', function(data) {
       }
     });
 
+
     app.get('/getAlarms', function(request, response) {
        var username = request.session.username;
        var querya = 'SELECT * from ALARMS WHERE USERNAME = ?';
@@ -67,6 +63,7 @@ application.on('payload', function(data) {
        });
      });
 
+
      app.get('/getEvents', function(request, response) {
        var querye = 'SELECT * from EVENTS';
 
@@ -75,5 +72,9 @@ application.on('payload', function(data) {
          response.send(arrayresult);
        });
      });
-   });
+
+
+     app.get('/setalarm', function(request, response) {
+	      response.sendFile(path.join(__dirname + '/../setAlarm.html'));
+      });
 }
