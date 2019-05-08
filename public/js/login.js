@@ -1,14 +1,11 @@
-var ibmdb = require('ibm_db');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 var passwordHash = require('password-hash');
 
 
-module.exports = function(app){
+module.exports = function(app,conn){
 
-ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.bluemix.net;UID=ldk15513;PWD=hqsv1nbr3^7tdzg1;PORT=50000;PROTOCOL=TCPIP", function (err,conn) {
-    if (err) return console.log(err);
 
 
 
@@ -105,6 +102,5 @@ app.post('/loggedin', function(request, response) {
    
 });
 
-});
 
 }
