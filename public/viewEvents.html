@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/alarm.css">
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="css/logs.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type ="text/javascript" src ="js/jqueryFuncs.js"></script>
         <meta charset="UTF-8">
@@ -25,7 +26,20 @@
             <li class="navbar"><a class="viewAlarmsLink" href="viewAlarms.html">Alarm log</a></li>
             <li class="navbar"><a class="viewEventsLink" href="viewEvents.html">Event log</a></li>
         </ul>
-        <div id="events">
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Alarm Description</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <input id="myInput" onkeyup="eventSearch()"type="text" placeholder="Search..">
+              </td>
+            </tr>
+          </thead>
+          <tbody id="events"></tbody>
+        </table>
     </body>
 </html>

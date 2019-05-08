@@ -85,9 +85,25 @@ function loadEvents() {
        }
    });
 }
+var cunnter = 1;
 function appendEvent(eventt) {
-   $("#events").append('event data:'+ '<p id="event">' + eventt + "</p>");
+   var e = eventt;
+   $("#events").append('<tr>' +
+                         "<td>" + "Example Data.. " + cunnter +
+                         "<td>" + e[1] + "</td>" +
+                         "<td>" + e[0] + "</td>" +
+                       '</tr>');
+   cunnter++;
 }
 function appendAlarm(alarm) {
    $("#alarms").append('alarm data:'+ '<p id="alarm">' + alarm + "</p>");
+}
+
+function alarmSearch() {
+  $("#myInput2").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#alarms tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 }
