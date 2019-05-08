@@ -96,13 +96,27 @@ function appendEvent(eventt) {
    cunnter++;
 }
 function appendAlarm(alarm) {
-   $("#alarms").append('alarm data:'+ '<p id="alarm">' + alarm + "</p>");
+  var a = alarm
+  $("#events").append('<tr>' +
+                        "<td>" + a[2] + "</td>" +
+                        "<td>" + a[3] + "</td>" +
+                        "<td>" + a[0] + "</td>" +
+                        "<td>" + a[1] + "</td>" +
+                      '</tr>');
 }
 
 function eventSearch() {
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#events tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+}
+function alarmSearch() {
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#alarms tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });

@@ -26,7 +26,21 @@
             <li class="navbar"><a class="viewAlarmsLink" href="viewAlarms.html">Alarm log</a></li>
             <li class="navbar"><a class="viewEventsLink" href="viewEvents.html">Event log</a></li>
         </ul>
-        <div id="alarms">
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Description</th>
+              <th>Start</th>
+              <th>End</th>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <input id="myInput" onkeyup="alarmSearch()"type="text" placeholder="Search..">
+              </td>
+            </tr>
+          </thead>
+          <tbody id="alarms"></tbody>
+        </table>
     </body>
 </html>
