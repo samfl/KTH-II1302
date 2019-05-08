@@ -99,10 +99,10 @@ function appendAlarm(alarm) {
    $("#alarms").append('alarm data:'+ '<p id="alarm">' + alarm + "</p>");
 }
 
-function alarmSearch() {
-  $("#myInput2").on("keyup", function() {
+function eventSearch() {
+  $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#alarms tr").filter(function() {
+    $("#events tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
