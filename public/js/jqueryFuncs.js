@@ -89,7 +89,7 @@ var cunnter = 1;
 function appendEvent(eventt) {
    var e = eventt;
    $("#events").append('<tr>' +
-                         "<td>" + "Example Data.. " + cunnter + "</td>"
+                         "<td>" + "Example Data.. " + cunnter + "</td>" +
                          "<td>" + e[1] + "</td>" +
                          "<td>" + e[0] + "</td>" +
                        '</tr>');
