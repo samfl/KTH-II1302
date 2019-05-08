@@ -30,11 +30,11 @@ function login(){
 function register(){
     var username = $("#username").val();
     var password = $("#password").val();
-    $.post("/reg", {   
+    $.post("/reg", {
         username: username,
         password: password
-    }, function(response){  
-        $("#username").val(''); 
+    }, function(response){
+        $("#username").val('');
         $("#password").val('');
         if(response === false){
           alert('user with that username already exists');
@@ -85,8 +85,8 @@ function loadEvents() {
        }
    });
 }
-function appendEvent(event) {
-   $("#events").append('event data:'+ '<p id="event">' + event + "</p>");
+function appendEvent(eventt) {
+   $("#events").append('event data:'+ '<p id="event">' + eventt + "</p>");
 }
 function appendAlarm(alarm) {
    $("#alarms").append('alarm data:'+ '<p id="alarm">' + alarm + "</p>");
