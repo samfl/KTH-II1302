@@ -1,14 +1,11 @@
-var ibmdb = require('ibm_db');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 var passwordHash = require('password-hash');
 
 
-module.exports = function(app){
+module.exports = function(app,conn){
 
-ibmdb.open("DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-lon02-01.services.eu-gb.bluemix.net;UID=ldk15513;PWD=hqsv1nbr3^7tdzg1;PORT=50000;PROTOCOL=TCPIP", function (err,conn) {
-    if (err) return console.log(err);
 
 
 
@@ -57,17 +54,26 @@ app.post('/auth', function(request, response) {
  app.post('/reg', function(request, response) {
 
 	var username = request.body.username;
-    var hashedPassword = passwordHash.generate(request.body.password);
-	var queryin = "INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?, ?)";
-
-	conn.queryResult(queryin, [username,hashedPassword], function (err, result) {
-
-		if(err) { console.log(err); }
-		 else {
-			response.redirect('/login');
+	var queryu = "SELECT * FROM USERS WHERE USERNAME = ?";
+	
+	 conn.queryResult(queryu, [username], function (err, result) {
+		 if(result.fetchSync() !== null){
+			 response.send(false);
+			 response.end();
 		 }
-	});
-});
+	 });
+		
+		var hashedPassword = passwordHash.generate(request.body.password);
+		var queryin = "INSERT INTO USERS (USERNAME, PASSWORD) VALUES (?, ?)";
+	
+		conn.queryResult(queryin, [username,hashedPassword], function (err, result) {
+	
+			if(err) { console.log(err); }
+			 else {
+				response.end();
+			 }
+	  });
+ });
 
 
 
@@ -96,6 +102,5 @@ app.post('/loggedin', function(request, response) {
    
 });
 
-});
 
 }
