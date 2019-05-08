@@ -97,7 +97,7 @@ function appendEvent(eventt) {
 }
 function appendAlarm(alarm) {
   var a = alarm
-  $("#events").append('<tr>' +
+  $("#alarms").append('<tr>' +
                         "<td>" + a[2] + "</td>" +
                         "<td>" + a[3] + "</td>" +
                         "<td>" + a[0] + "</td>" +
