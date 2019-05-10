@@ -1,0 +1,36 @@
+/* For searchable event log table */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #F7F7F7;
+}
+tr:nth-child(odd) {
+  background-color: #EBEBEB;
+}
+
+th {
+  background-color: #40425E;
+  color: white;
+}
+
+#myInput {
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+#myInput2 {
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}

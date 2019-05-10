@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Set Alarm Page</title>
+        <title>Set Alarm</title>
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/alarm.css">
         <link rel="stylesheet" type="text/css" href="css/navbar.css">
@@ -12,7 +12,7 @@
     </head>
     <body id = "alarmPage">
         <header class="header">
-            <h1>Set Alarm Page</h1>
+            <h1>Set Alarm</h1>
             <input id = "logout" type = "submit" onclick="logout();" value ="Logout"></input>
         </header>
         <ul class="navbar">
@@ -22,19 +22,20 @@
             <li class="navbar"><a class="login" href="login.html">Login</a></li>
             <li class="navbar"><a class="navbar" href="registration.html">Registration</a></li>
             <li class="navbar"><a class="setAlarmLink" href="setAlarm.html">Set Alarm</a></li>
-            <li class="navbar"><a class="viewAlarmsLink" href="viewAlarms.html">View Alarms</a></li>
-            <li class="navbar"><a class="viewEventsLink" href="viewEvents.html">View Events</a></li>
+            <li class="navbar"><a class="viewAlarmsLink" href="viewAlarms.html">Alarm log</a></li>
+            <li class="navbar"><a class="viewEventsLink" href="viewEvents.html">Event log</a></li>
         </ul>
         <div class ="setAlarm">
-              <form action="setAlarm" method="POST">
+              <form action="seta" method="POST">
               <label>Enter start time</label><br>
               <input id ="start" name = "start" placeholder ="start" type = "time" required><br>
               <label>Enter end time</label><br>
               <input id = "end" name ="end" placeholder="end" type = "time" required> <br>
-              <label id = "descr">Enter description</label><br><br>
-              <textarea name="desc" placeholder="Enter description here" cols="20" rows="3"></textarea><br>
+              <label>Enter description</label><br><br>
+              <textarea id="desc" name="desc" placeholder="Enter description here" cols="20" rows="3" type="text" required></textarea><br>
               <input id ="submitAlarm" type="submit" value="Set Alarm">
               </form>
+              <br>
         </div>
     </body>
 </html>
