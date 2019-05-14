@@ -9,10 +9,10 @@ import ibmiotf.device
 
 motionSensorGPIOPort = 4
 
-print("Hej")
+print("Try config")
 options = ibmiotf.device.ParseConfigFile("/home/pi/device.cfg")
 client = ibmiotf.device.Client(options)
-print("Fel")
+print("Config ok!")
 
 # try:
 #  options = {
@@ -26,23 +26,25 @@ print("Fel")
 #  client = ibmiotf.device.Client(options)
 #except ibmiotf.ConnectionException  as e:
 
-print "try to connect to IoT"
+print "try to connect to IoT-platform"
 client.connect()
-print "connect to IoT successfully"
+print "connect to IBM Watson IoT platform successfully"
 
 motionStatus = False
 motionSensor.setup(motionSensorGPIOPort)
 
+lastMotionSensor = 0
+myList = [0,0]
 
 while True:
   motionData = motionSensor.sample()
   jsonMotionData = json.dumps(motionData)
   motionStatus = motionData['motionDetected']
-  #client.publishEvent("raspberrypi", options["id"], "motionSensor", "json", jsonMotionData)
-  client.publishEvent("status", "json", motionStatus)
-
-  if motionData['motionDetected'] != motionStatus:
-    motionStatus = motionData['motionDetected']
+  lastMotionStatus = myList[0]
+  myList.insert(0, motionStatus)
+  myList.insert(0, lastMotionSensor)
+  if (motionStatus == 1) and (myList[0] != myList[1]):
+    client.publishEvent("status", "json", motionStatus)
     print "Change in motion detector status, motionDetected is now:", motionStatus
 
   time.sleep(1)
