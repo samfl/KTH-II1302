@@ -42,7 +42,7 @@ while True:
   motionStatus = motionData['motionDetected']
   lastMotionStatus = myList[0]
   myList.insert(0, motionStatus)
-  myList.insert(0, lastMotionSensor)
+  myList.insert(1, lastMotionSensor)
   if (motionStatus == 1) and (myList[0] != myList[1]):
     client.publishEvent("status", "json", motionStatus)
     print "Change in motion detector status, motionDetected is now:", motionStatus
