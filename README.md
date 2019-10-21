@@ -19,6 +19,7 @@ Stand up meetings, retrospective, time accounting (economy) and iteration plan w
 - Iteration 5 (2 week): Component description, ergonomy motivation, sustainable environment motivation
 - Iteration 6 (1 week): Report - What is a good project process? Demo presentation
 ## Project Implementation
+Obs, my very first Node project..
 - App deployed at IBM Bluemix Cloud (integrated Git and toolchain)
   - Frontend: HTML, css, javascript (JQuery), no framework..
   - Backend: NodeJS with ExpressJS, DB2
